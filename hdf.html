@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع الشخصي والبورتفوليو الشامل</title>
+    <!-- خط Cairo من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #1e293b;
+            --card-hover: #334155;
+            --accent-color: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- شريط التنقل (Navbar) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .cta-btn {
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- الهيكل العام للأقسام --- */
+        section {
+            padding: 100px 8% 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 4px;
+            background: var(--accent-gradient);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        /* --- القسم الترحيبي (Hero Section) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding-top: 130px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--card-bg);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-wrapper {
+            width: 320px;
+            height: 320px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: var(--accent-gradient);
+            padding: 8px;
+            animation: morphing 8s ease-in-out infinite;
+        }
+
+        .img-inner {
+            width: 100%;
+            height: 100%;
+            background-color: var(--card-bg);
+            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: var(--accent-color);
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* --- قسم المهارات (Skills) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #0f172a;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        /* --- قسم المشاريع (Projects with Filter) --- */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .project-img {
+            height: 180px;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #0f172a;
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- قسم الخبرات (Timeline) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+            width: 50%;
+            padding: 0 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            right: 0;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) {
+            right: 50%;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+
+        .timeline-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.05rem;
+            color: var(--accent-color);
+        }
+
+        .timeline-content span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- قسم التواصل (Contact) --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .submit-btn {
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* --- الفوتر (Footer) --- */
+        footer {
+            background-color: #080d1a;
+            border-top: 1px solid var(--border-color);
+            padding: 30px 5%;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* تجاوب مع الموبايل */
+        @media (max-width: 850px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .timeline::before {
+                right: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                right: 0 !important;
+                padding-right: 45px;
+                padding-left: 0;
+                text-align: right !important;
+            }
+            .timeline-dot {
+                right: 12px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <a href="#" class="logo"><i class="fa-solid fa-code"></i>خالد<span>.Dev</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#about">عني</a></li>
+            <li><a href="#skills">المهارات</a></li>
+            <li><a href="#projects">المشاريع</a></li>
+            <li><a href="#experience">الخبرات</a></li>
+            <li><a href="#contact">التواصل</a></li>
+        </ul>
+        <a href="#contact" class="cta-btn">تواصل معي</a>
+    </nav>
+
+    <!-- القسم الترحيبي -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> أهلاً بك في موقعي الشخصي</span>
+            <h1>مرحباً، أنا <span>خالد مسعد</span><br>مطور أنظمة وويب متكامل</h1>
+            <p>أقوم ببناء تطبيقات ويب متكاملة، سريعة، ومصممة بأحدث التقنيات البرمجية لتوفير أفضل تجربة للمستخدم.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-btn">تصفح الأعمال</a>
+                <a href="#contact" class="btn-secondary">تحميل السيرة الذاتية <i class="fa-solid fa-download"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="img-wrapper">
+                <div class="img-inner">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عني -->
+    <section id="about">
+        <div class="section-title">
+            <h2>نبذة عني</h2>
+            <p>شغوف بالبرمجة وبناء الأكواد عالية الجودة</p>
+        </div>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-secondary);">
+            متخصص في مجال تطوير البرمجيات وحلول الويب بخبرة واسعة في التقنيات الحديثة. أسعى دائماً لتحويل الأفكار المعقدة إلى منتجات برمجية بسيطة وسريعة الاستخدام، مع الالتزام التام بكتابة كود نظيف وقابل للتطوير المستقبلي.
+        </p>
+    </section>
+
+    <!-- قسم المهارات -->
+    <section id="skills">
+        <div class="section-title">
+            <h2>المهارات والتقنيات</h2>
+            <p>الأدوات واللغات التي أتقنها</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-brands fa-html5 skill-icon"></i>
+                <h3>HTML5 / CSS3 / JS</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">بناء الواجهات التفاعلية والأنيمة السلسة.</p>
+                <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-react skill-icon"></i>
+                <h3>React.js / Next.js</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">تطوير تطبيقات الصفحة الواحدة السريعة.</p>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-node-js skill-icon"></i>
+                <h3>Node.js / Express</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">بناء الـ APIs والخوادم المعتمدة.</p>
+                <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database skill-icon"></i>
+                <h3>PostgreSQL / MongoDB</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">تصميم وإدارة قواعد البيانات المعقدة.</p>
+                <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المشاريع مع فلترة -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>معرض المشاريع</h2>
+            <p>أبرز الأعمال والمشاريع التي قمت بتطويرها</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProjects('all')">الكل</button>
+            <button class="filter-btn" onclick="filterProjects('web')">تطبيقات الويب</button>
+            <button class="filter-btn" onclick="filterProjects('mobile')">الموبايل</button>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card web">
+                <div class="project-img"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="project-info">
+                    <h3>منصة متجر إلكتروني</h3>
+                    <p>متجر متكامل يحتوي على سلة الشراء والدفع عبر الإنترنت ورسائل إلكترونية.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Stripe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card web">
+                <div class="project-img"><i class="fa-solid fa-list-check"></i></div>
+                <div class="project-info">
+                    <h3>نظام إدارة المهام والفرق</h3>
+                    <p>منصة لمتابعة إنتاجية الفرق ومشاركة الملفات والتنبيهات المباشرة.</p>
+                    <div class="project-tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card mobile">
+                <div class="project-img"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div class="project-info">
+                    <h3>تطبيق حجز المواعيد الطبية</h3>
+                    <p>تطبيق للموبايل يتيح استعراض العيادات وحجز المواعيد إلكترونياً.</p>
+                    <div class="project-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخبرات والمسار المهني -->
+    <section id="experience">
+        <div class="section-title">
+            <h2>الخبرات والتعليم</h2>
+            <p>مساري المهني والأكاديمي</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>مطور برمجيات رئيسي (Senior Developer)</h3>
+                    <span>2024 - حتى الآن | شركة التقنية الذكية</span>
+                    <p>قيادة فريق البرمجة وتطوير الخدمات السحابية والأنظمة المعقدة.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>مطور واجهات كبار (Frontend Dev)</h3>
+                    <span>2022 - 2024 | مؤسسة البرمجيات</span>
+                    <p>تطوير وتصميم مواقع وتطبيقات تفاعلية عالية السرعة والأداء.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>بكالوريوس علوم الحاسوب</h3>
+                    <span>2018 - 2022 | الجامعة</span>
+                    <p>التخرج بتقدير ممتاز مع مرتبة الشرف في نظم المعلومات وتطوير الويب.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>تواصل معي</h2>
+            <p>هل لديك مشروع أو استفسار؟ يسعدني التواصل معك</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>البريد الإلكتروني</h4>
+                        <p style="color: var(--text-secondary);">km8132384.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h4>الهاتف / واتساب</h4>
+                        <p style="color: var(--text-secondary);" dir="ltr">+20 1220193680</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>الموقع</h4>
+                        <p style="color: var(--text-secondary);">المنصورة</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('تم ارسال الرسالة بنجاح!');">
+                <div class="form-group">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | تم التطوير بواسطة محمود جمال</p>
+    </footer>
+
+    <!-- جافاسكريبت للفلترة السريعة للمشاريع -->
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
